@@ -26,8 +26,10 @@
         "url": "https://github.com/BlackrockDigital/startbootstrap-resume.git"
     },
     "dependencies": {
+        "4": "0.0.0",
         "bootstrap": "4.1.1",
         "devicons": "^1.8.0",
+        "hoek": "^5.0.3",
         "jquery": "3.3.1",
         "simple-line-icons": "^2.4.1"
     },
@@ -36,7 +38,7 @@
         "gulp": "^4.0.0",
         "gulp-clean-css": "3.9.4",
         "gulp-header": "2.0.5",
-        "gulp-rename": "^1.2.2",
+        "gulp-rename": "^1.3.0",
         "gulp-sass": "4.0.1",
         "gulp-uglify": "3.0.0"
     }
