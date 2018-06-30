@@ -1,2 +1,2 @@
 all:
-	xelatex cv.tex
+	pdflatex cv.tex
