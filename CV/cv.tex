@@ -8,8 +8,23 @@
 \usepackage{color}
 \usepackage{xcolor}
 \usepackage{tgbonum}
-
+\usepackage{ amssymb }
 \usepackage[left=2cm,top=2cm,right=2cm,bottom=2.5cm,nofoot]{geometry}
+\usepackage{ifpdf}
+\ifpdf%                                % if we use pdflatex
+  \pdfoutput=1\relax                   % create PDFs from pdfLaTeX
+  \pdfcompresslevel=9                  % PDF Compression
+  \pdfoptionpdfminorversion=7          % create PDF 1.7
+  \ExecuteOptions{pdftex}
+  \usepackage{graphicx}                % allow us to embed graphics files
+  \DeclareGraphicsExtensions{.pdf,.png,.jpg,.jpeg} % for pdflatex we expect .pdf, .png, or .jpg files
+\else%                                 % else we use pure latex
+  \ExecuteOptions{dvips}
+  \usepackage{graphicx}                % allow us to embed graphics files
+  \DeclareGraphicsExtensions{.eps}     % for pure latex we expect eps files
+\fi%
+\graphicspath{{figures/}{pictures/}{images/}{./}{img/}} % where to search for the images
+
 
 \newcommand{\squishlist}{
  \begin{list}{$\bullet$}
@@ -19,9 +34,7 @@
      \setlength{\partopsep}{0pt}
      \setlength{\leftmargin}{1.5em}
      \setlength{\labelwidth}{1em}
-     \setlength{\labelsep}{0.5em} } }
-
-
+     \setlength{\labelsep}{0.5em} } }%
 \newcommand{\squishlisttwo}{
  \begin{list}{$\bullet$}
   { \setlength{\itemsep}{0pt}
@@ -30,14 +43,13 @@
     \setlength{\partopsep}{0pt}
     \setlength{\leftmargin}{2em}
     \setlength{\labelwidth}{1.5em}
-    \setlength{\labelsep}{0.5em} } }
-
+    \setlength{\labelsep}{0.5em} } }%
 \newcommand{\squishend}{
-  \end{list}  }
+  \end{list}  }%
 \newcommand{\pub}[4]{
   {\emph{#1}\hfill{\small#2}\\
     #3\\
-    #4}}
+    #4}}%
   
 
 \hypersetup{
@@ -61,15 +73,33 @@
   \end{minipage}
   \begin{minipage}{0.85\textwidth}
     \protect{#2}
-  \end{minipage}
-  
+  \end{minipage}  
 }
+
+\newcommand{\halfnhalf}[2]{
+  \begin{minipage}{0.4\textwidth}
+    \protect{#2}
+  \end{minipage}  
+  \noindent\begin{minipage}{0.6\textwidth}
+    \begin{center}
+      \includegraphics[width=0.95\linewidth]{#1}
+      {\scriptsize Urban data analysis with Piccard: \url{http://uoft.me/piccard}}
+    \end{center}    
+  \end{minipage}  
+}
+
+\newcommand{\va}{\ensuremath{\bigstar}}
+\newcommand{\gsp}{\ensuremath{\blacktriangleright}}
+\newcommand{\cv}{\ensuremath{\blacksquare}}
+\newcommand{\scivis}{\ensuremath{\blacklozenge}}
 
 \usepackage{fancyhdr}
 \pagestyle{fancy}
 \thispagestyle{empty}
 \fancyhead[LO]{Fabio Dias \hfill \href{https://fabioasdias.github.io}{\nolinkurl{https://fabioasdias.github.io}}  }
-
+\usepackage{setspace}
+\renewcommand{\baselinestretch}{1.25} 
+\newcommand{\mySec}[1]{\vspace{-0.5em}\section*{#1}\vspace{-0.5em}}
 
 \begin{document}
 \begin{textblock*}{2.5in}(0.5in,0.56in)
@@ -88,222 +118,238 @@
 \begin{tikzpicture}[remember picture,overlay]
   \draw[color=gray,line width=1pt] (current page.north west)+(0.5in,-0.8in) -- ($(-0.625in,-0.8in)+(current page.north east)$);
 \end{tikzpicture}
-
 \fontfamily{ppl}\selectfont 
 
-\section*{Education}
+\mySec{Research interests} 
+\halfnhalf{overview.pdf}{
+  \squishlist
+    \item{Signal processing in graphs,}
+    \item{Urban data, }
+    \item{Visual analytics,}
+    \item{Information visualization.}
+  \squishend
+  }
+\vspace{-2em}
+\mySec{Education}
 \withLogo{img/upe.png}{  
-  \textbf{Ph.D. in Computer Science} \hfill 2009-2012\\
-  Universit{\'e} Paris-Est, Champs-sur-Marne, France.\\
-  \emph{A study of some morphological operators in simplicial complex spaces.}\\
+  \textbf{Ph.D. in Computer Science} \hfill Universit{\'e} Paris-Est, France.\\
+  \emph{A study of some morphological operators in simplicial complex spaces.}\hfill 2009-2012\\
   \textbf{Advisors:} Prof. Dr. Laurent Najman and Prof. Dr. Jean Cousty
 }
 \vspace{1em}
 \withLogo{img/unicamp.png}{
-  \textbf{M.Sc. in Computer Science} \hfill 2007-2009\\
-  Institute of Computing - Unicamp, Campinas, Brazil.\\
-  \emph{Generalized visual rhythm and tracking in sport images.}\\
+  \textbf{M.Sc. in Computer Science} \hfill Unicamp, Brazil.\\
+  \emph{Generalized visual rhythm and tracking in sport images.}\hfill 2007-2009\\
   \textbf{Advisor:} Prof. Dr. Neucimar J. Leite
 }
 \vspace{1em}
 \withLogo{img/unicamp.png}{
-  \textbf{B.E. in Computer Engineering} \hfill 2002-2006\\
-  Unicamp, Campinas, Brazil.\\
-  \emph{Information fusion and object tracking in video images.}\\
+  \textbf{B.E. in Computer Engineering} \hfill Unicamp, Brazil.\\
+  \emph{Information fusion and object tracking in video images.}\hfill 2002-2006\\
   \textbf{Advisor:} Prof. Dr. Neucimar J. Leite
 }
-
-\section*{Research funding}
-\squishlist
-  \item{Research Internship Abroad: 12 months - \href{http://www.fapesp.br/en/about}{FAPESP} \hfill 2016-2017}
-  \item{Postdoctoral fellowship: 22 months - \href{http://www.fapesp.br/en/about}{FAPESP} \hfill 2015-2016}
-  \item{Postdoctoral fellowship: 14 months - \href{http://www.fapesp.br/en/about}{FAPESP} \hfill 2013-2014}
-  \item{Master's fellowship: 24 months - \href{http://www.fapesp.br/en/about}{FAPESP} \hfill 2007-2009}
-  \item{Undergrad research internship: 12 months - \href{http://www.fapesp.br/en/about}{FAPESP} \hfill 2004-2005}
-\squishend
-
-\section*{Research experience}
-
+\vspace{-2em}
+\mySec{Research experience}
 \withLogo{img/uoft.png}{
   Postdoctoral Fellow \hfill 2017-Present\\
   University of Toronto, Toronto, Canada\\
-  \emph{Urban Genome Project.}
+  \href{https://www.utoronto.ca/news/tags/urban-genome-project}{\emph{Urban Genome Project.}}
 }
-
+\vspace{1em}
 \withLogo{img/nyu.png}{
   Postdoctoral Fellow \hfill 2016-2017\\
   NYU Tandon School of Engineering, NY, USA\\
   \emph{Visual analytics for network urban data.}
 }
-
+\vspace{1em}
 \withLogo{img/usp.png}{
   Postdoctoral Fellow \hfill 2015-2016\\
   University of Sao Paulo, Sao Carlos, Brazil\\
   \emph{Visual analytics for network data.}
 }
-
+\vspace{1em}
 \withLogo{img/unicamp.png}{
   Postdoctoral Fellow \hfill 2013-2014\\
   College of Physical Education - Unicamp, Campinas, Brazil\\
   \emph{Human motion analysis for underwater sports.}
 }
-
+\vspace{1em}
 \withLogo{img/esiee.png}{
   Research Assistant \hfill 2009-2011\\
   ESIEE Paris - Noisy-le-Grand, France\\
   \emph{DematFactory - Signal processing in digital structures.}
 }
 
-\section*{Publications} 
+
+\mySec{Grants and funding}
+{\small (For reference, the base salary of an entry level Assistant Professor is about R\$100k/year)}
+\squishlist
+  \item{Research Internship Abroad: 12 months - \href{http://www.fapesp.br/en/about}{FAPESP} - R\$ 230k (NYU) \hfill 2016-2017}
+  \item{Postdoctoral fellowship: 22 months - FAPESP - R\$150k (USP) \hfill 2015-2016}
+  \item{Postdoctoral fellowship: 14 months - FAPESP - R\$100k  (Unicamp) \hfill 2013-2014}
+  \item{Master's fellowship: 24 months - FAPESP - R\$32k  (Unicamp) \hfill 2007-2009}
+  \item{Undergrad research internship: 12 months - FAPESP - R\$4k  (Unicamp) \hfill 2004-2005}
+\squishend
 
 
-\begin{enumerate}
-  \item{
+\mySec{Publications} 
+\begin{center}
+  \begin{tabular}{ |c|c|c|c|c| } 
+   \hline
+               &    Field                       & Journal & Conference & Book chapter \\\hline
+    \va&Visual analytics                        &    2    &      4     &      1       \\
+    \gsp&Signal processing in digital structures &    2    &      2     &  \\
+    \cv&Computer vision (biomechanics)          &    3    &      5     &  \\
+    \scivis&Scientific visualization                &    0    &      1     &  \\\hline
+    &Total                                   &    7    &     12     &     1 \\
+   \hline
+  \end{tabular}
+\end{center}
+
+\squishlist
+  \item[\va]{
     \pub
         {Visualizing demographic evolution using geographically inconsistent census data}{}
         {Dias, F; Silver, D.}
-        {SocArXiv 2018/4/1 - (under elaboration)}
+        {SocArXiv 2018 - (submitted to IEEE TVCG on August 18th, 2018)}
   }
-  \item{
+  \item[\va]{
     \pub
         {Wavelet-Based Visual Data Exploration}{Book chapter}
         {Dal Col, A. ; Valdivia, P. ; Petronetto, F. ; Dias, F. ; Silva, C.T.; Nonato,  L.G. }
         {In: Lj. Stankovic, E. Sejdic, Eds., Vertex-frequency analysis of graphs, Springer, 2019.}
   }
-  \item{
+  \item[\va]{
+    \pub
+        {Wavelet-based Visual Analysis of Dynamic Networks }{  Journal}
+        {Dal Col, A.; Valdivia, P.; Petronetto, F.; Dias, F.; Silva, C.T.; Nonato, L. G.}  
+        {IEEE Transactions on Visualization and Computer Graphics, 2018}
+  }  
+  \item[\va]{
     \pub
         {A Hierarchical Network Simplification Via Non-Negative Matrix Factorization}{Conference}
         {Dias, M.; Mansour, M.; Dias, F.; Petronetto, F.; Silva, C.T; Nonato,  L. G. }  
         {Sibgrapi - Conference on Graphics, Patterns and Images, 2017.
         \\\textbf{Honorable mention for Computer Graphics and Visualization}}
   }  
-\item{
-  \pub
-      {Wavelet-based Visual Analysis of Dynamic Networks }{  Journal}
-      {Dal Col, A.; Valdivia, P.; Petronetto, F.; Dias, F.; Silva, C.T.; Nonato, L. G.}  
-      {IEEE Transactions on Visualization and Computer Graphics, 2017}
-}
-\item{
+  \item[\va]{
+    \pub
+        {Tensor Decomposition for Multi-way Time-Varying Data Visualization}{Conference}
+        {Romanetto, L.M. ; Souza Leao, A.A. ; Dias, F. ; Nonato, L.G.}
+        {WVIS, Sibgrapi - Conference on Graphics, Patterns and Images, 2017.}
+  }
+\item[\va]{
   \pub
       {Wavelet-based Visual Analysis for Data Exploration }{ Journal}
       {Dal Col, A.; Valdivia, P.; Petronetto, F.; Dias, F.; Silva, C.T.; Nonato, L. G.}  
       {IEEE Computing in Science \& Engineering, 2017.}
 }
-\item{
+\item[\va]{
   \pub
       {Watersheds on hypergraphs for data clustering}{ Conference}
       {Dias, F.; Mansour, Moussa R.; Valdivia, P., Cousty, J; Najman, L.}  
       {International Symposium on Mathematical Morphology, 2017.}
 }
-\item{
+\item[\scivis]{
   \pub
       {Topological Analysis of Inertial Dynamics}{Conference}
       {Sagrista, A.; Jordan, S.; Just, A; Dias, F.; Nonato, L.G.; Sadlo, F.}
       {IEEE Transactions on Visualization and Computer Graphics (SciVis), 2016.}
 }
-\item{
+\item[\cv]{
   \pub
       {Improved accuracy in 3D analysis using DLT after lens distortion correction}{Journal}
       {Rossi, M. ;  Silvatti, A. ; Dias, F.;   Barros, R.M.L.}
       {Computer methods in biomechanics and biomedical engineering, 2015.}
 }
-  
-\item{
+\item[\va]{
   \pub
       {Wavelet-based Visualization of Time-Varying Data on Graphs}{Conference}
       {Valdivia, P.; Dias, F.; Petronetto, F.; Silva, C.T.; Nonato, L.G.}
       {IEEE Conference on Visual Analytics Science and Technology, 2015.}
 }
-\item{
+\item[\va]{
   \pub
       {Some Operators from Mathematical Morphology for the \\ Visual Analysis of Georeferenced Data}{Conference}
       {Dias, F.; Nonato, L.G.}
       {WVIS, Sibgrapi - Conference on Graphics, Patterns and Images, 2015.}
       \\~\textbf{Best paper award.}
 } 
-\item{
+\item[\cv]{
   \pub
       {Using Digital Image Processing to Estimate the Depth of Urban Streams}{Conference}
       {Ortigossa, E.; Dias, F.; Ueyama, J.; Nonato, L.G.}
       {Workshop of Undergraduate Works, Sibgrapi, 2015.}
       \\~\textbf{Best paper award.}
 }
-  
-\item{
+\item[\gsp]{
   \pub
       {Dimensional operators for mathematical morphology on simplicial complexes}{Journal}
       {Dias, F; Cousty, J; Najman, L.}
       {Pattern  Recognition Letters, 2014.}
 }
-
-\item{
+\item[\cv]{
   \pub
     {Quantitative underwater 3D motion analysis using submerged video cameras: \\
     accuracy analysis and trajectory reconstruction }{ Journal}
     {Silvatti, A.; Cerveri, P. ; Telles, T. ; Dias, F.; Baroni, G. ; Barros, R.}
     {Computer Methods in Biomechanics and Biomedical Engineering, 2013.}
 }
-  
-\item{
+\item[\gsp]{
   \pub
       {Morphological filtering on graphs }{ Journal}
       {Cousty, J.; Najman, L.; Dias, F.; Serra, J.}
       {Computer Vision and Image Understanding, 2012.}
 }
-
-\item{
+\item[\cv]{
   \pub
-      {Camera calibration for underwater applications:\\
+      {\small Camera calibration for underwater applications:
         effects of object position on the 3d accuracy }{ Conference}
       {Silvatti, A. ; Dias, F. ; Cerveri, P.; Barros, R.M.L.}
       {International Society of Biomechanics in Sport Conference, 2012.}
 }
-
-\item{
+\item[\cv]{
   \pub
-      {Comparison of different camera calibration approaches for underwater applications }{ Conference}
+      {Comparison of different camera calibration approaches for underwater applications }{ Journal}
       {Silvatti, A. ; Dias, F. ; Cerveri, P.; Barros, R.M.L.}
       {Journal of Biomechanics, 2012.}
 }
-
-\item{
+\item[\gsp]{
   \pub
       {Some morphological operators on simplicial complexes }{ Conference}
       {Dias, F. ; Cousty, J. ; Najman, L.}
       {Discrete Geometry for Computer Imagery, 2011.}
       \\~\textbf{Short list (3) for best student paper award.}
 }
-
-
-\item{
+\item[\cv]{
   \pub
       {Underwater comparison of wand and 2d plane nonlinear camera calibration methods }{ Conference}
       {Silvatti, A. ; Telles, T ; Dias, F. ; Cerveri, P.; Barros, R.M.L.}
       {International Society of Biomechanics in Sport Conference, 2011.}
 }
-
-\item{
+\item[\cv]{
   \pub
       {Underwater non-linear camera calibration: an accuracy analysis }{ Conference}
       {Silvatti, A. ; Telles, T ; Rossi, M. ; Dias, F. ; Leite, N.J.; Barros, R.M.L.}
       {International Society of Biomechanics in Sport Conference, 2010.}
 }
-
-
-\item{
+\item[\cv]{
   \pub
       {Non-linear camera calibration for 3D reconstruction using straight line plane object}{Conference}
       {Silvatti, A. ; Rossi, M. ; Dias, F. ; Leite, N.J.; Barros, R.M.L.}
       {International Society of Biomechanics in Sport Conference, 2009.}
 }
+\squishend
 
-\end{enumerate}
+% \mySec{Projects}
+% \squishlist
+%   \item{}
+% \squishend
 
 
+\mySec{Teaching experience}
 
-\section*{Teaching experience}
-
-\begin{itemize}
+\squishlist
   \item{Lecturer: \hfill USP\\
     Introduction to Statistics - undergrad (60h) \hfill 2016\\
     Mathematical topics in data analysis I and II - graduate (48h) \hfill 2015
@@ -318,25 +364,22 @@
     File Structures - undergrad (30h, lab). \hfill 2007, 2008\\
     Laboratory of computer hardware - undergrad (30h, lab). \hfill 2005
   }
+\squishend
 
 
-        
-\end{itemize}   
-
-
-\section*{Service}
+\mySec{Service}
 \squishlist
   \item{\textbf{Program Committee}: CLEI - SLCGRVPI 2015-; SIBGRAPI 2018-.}
-  \item{\textbf{Reviewer - Journals}: IEEE CG\&A 2018-; IET IPR, 2015-.}
+  \item{\textbf{Reviewer - Journals}: IEEE CG\&A 2018-; IET IPR, 2015-; Springer C\&G, TVC. 2017-}
   \item{\textbf{Reviewer - Conferences}: IEEE VIS 2015-; SIBGRAPI 2009, 2013, 2016-.}
   \item{\textbf{Reviewer - Grants and awards}: FAPESP 2013-; FACEPE 2015- .}
  \squishend
+
  
 
-\section*{Additional information}
+\mySec{Additional information}
 
-
-Permanent Resident of Canada since Sep. 2017
+Permanent Resident of Canada since May 2017
 
 \begin{minipage}{0.5\textwidth}
   English proficiency:
@@ -353,4 +396,8 @@ Permanent Resident of Canada since Sep. 2017
     \item{\href{https://www.linkedin.com/in/fabio-dias}{LinkedIn}}    
   \squishend
 \end{minipage}
+
+
+
+
 \end{document}
