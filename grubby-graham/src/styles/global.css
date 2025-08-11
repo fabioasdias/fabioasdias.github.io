@@ -172,11 +172,11 @@ h2 {
 }
 
 h3 {
-	font-size: var(--text-3xl);
+	font-size: var(--text-xl);
 }
 
 h4 {
-	font-size: var(--text-2xl);
+	font-size: var(--text-xl);
 }
 
 h5 {
