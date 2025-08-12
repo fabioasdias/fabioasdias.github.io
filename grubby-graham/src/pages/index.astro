@@ -33,8 +33,8 @@ const projects = (await getCollection('work'))
 				>
 					<div class="roles">
 						<Pill><Icon icon="code" size="1.33em" /> Developer</Pill>
-						<Pill><Icon icon="microphone-stage" size="1.33em" /> TODO</Pill>
-						<Pill><Icon icon="pencil-line" size="1.33em" /> Team leader</Pill>
+						<Pill><Icon icon="wrench" size="1.33em" /> Platform Engineering</Pill>
+						<Pill><Icon icon="airplane-takeoff" size="1.33em" /> Team leader</Pill>
 					</div>
 				</Hero>
 
@@ -52,7 +52,7 @@ const projects = (await getCollection('work'))
 		<main class="wrapper stack gap-20 lg:gap-48">
 			<section class="section with-background with-cta">
 				<header class="section-header stack gap-2 lg:gap-4">
-					<h3>Selected Work</h3>
+					<h3>Selected Projects</h3>
 				</header>
 
 				<div class="gallery">
@@ -75,27 +75,6 @@ const projects = (await getCollection('work'))
 				</div>
 			</section>
 
-			<section class="section with-background bg-variant">
-				<header class="section-header stack gap-2 lg:gap-4">
-					<h3>Mentions</h3>
-					<p>
-						I have been fortunate enough to receive praise for my work in several publications. Take
-						a look below to learn more.
-					</p>
-				</header>
-
-				<div class="gallery">
-					<Grid variant="small">
-						{
-							['Medium', 'BuzzFeed', 'The Next Web', 'awwwards.', 'TechCrunch'].map((brand) => (
-								<li class="mention-card">
-									<p>{brand}</p>
-								</li>
-							))
-						}
-					</Grid>
-				</div>
-			</section>
 		</main>
 
 		<ContactCTA />
