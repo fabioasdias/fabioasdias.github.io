@@ -1,0 +1,164 @@
+---
+import ContactCTA from '../components/ContactCTA.astro';
+import Hero from '../components/Hero.astro';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import DatedEntry from '../components/DatedEntry.astro';	
+---
+
+<BaseLayout title="Experience | Fabio Dias" description="Employment history">
+	<div class="stack gap-20">
+		<main class="wrapper about">
+			<Hero
+				title="Experience"
+				tagline="An overview of my roles."
+			>
+			</Hero>
+
+			<section>
+				<h2 class="section-title">Summary</h2>
+				<div class="content">
+					<p>
+						Ultrices tincidunt arcu non sodales neque sodales ut. Sed enim ut sem viverra aliquet
+						eget sit amet. Lacus luctus accumsan tortor posuere ac ut consequat semper viverra.
+						Viverra accumsan in nisl nisi scelerisque eu ultrices. In massa tempor nec feugiat nisl
+						pretium fusce.
+					</p>
+				</div>
+			</section>
+			<section>
+				<h2 class="section-title">Roles</h2>
+				<div class="content">
+					<DatedEntry
+						title="Senior DevSecOps Engineer"
+						date="05/2024 - Present"
+					>
+						<p>State Street, Toronto, Canada.</p>
+					</DatedEntry>
+
+					<DatedEntry
+						title="Lead Cloud Developer"
+						date="09/2019 - 04/2024"
+					>
+						<p>State Street, Toronto, Canada.</p>
+					</DatedEntry>
+
+					<DatedEntry
+						title="Researcher"
+						date="09/2017 - 08/2019"
+					>
+						<p>Urban Genome Project - University of Toronto</p>
+						<p>An UofT - Connaught Global Challenge project, with researchers from several areas, aiming to improve the understanding of the urban environment in its many facets. My role is to develop new visual analytics methods to enable the identification and dissemination of insights from urban data, to both professionals and the general public.</p>
+					</DatedEntry>
+
+
+										<DatedEntry
+						title="Researcher"
+						date="07/2016 - 06/2017"
+					>
+						<p>NYU Tandon School of Engineering / Center for Data Science</p>
+						<p>Development of visual analytics systems for urban data and creation of new data clustering methods.</p>
+					</DatedEntry>
+
+
+
+
+					<DatedEntry
+						title="Researcher"
+						date="01/2015 - 06/2016"
+					>
+						<p>University of Sao Paulo</p>
+						<p>Visual analytics for network data, including project management, team coordination, and mentoring.</p>
+					</DatedEntry>
+
+
+
+
+					<DatedEntry
+						title="Systems Analyst"
+						date="08/2014 - 12/2014"
+					>
+						<p>Foundation for Space Science, Applications and Technology, Brazil</p>
+						<p>Development of a WebGIS / visual analytics system for the TerraClass project, disseminating knowledge about land use and deforestation in the Amazon Forest.</p>
+					</DatedEntry>
+
+
+					<DatedEntry
+						title="Researcher"
+						date="04/2013 - 05/2014"
+					>
+						<p><a href="https://fef.unicamp.br/">Unicamp</a></p>
+						<p>Human motion analysis for underwater sports, camera calibration methods for underwater capture, new methods for asynchronous marker reconstruction, methods for markerless tridimensional pose recovery.</p>
+					</DatedEntry>
+
+
+
+
+
+
+
+
+				</div>
+			</section>
+		</main>
+
+		<ContactCTA />
+	</div>
+</BaseLayout>
+
+<style>
+	.about {
+		display: flex;
+		flex-direction: column;
+		gap: 3.5rem;
+	}
+
+	img {
+		margin-top: 1.5rem;
+		border-radius: 1.5rem;
+		box-shadow: var(--shadow-md);
+	}
+
+	section {
+		display: flex;
+		flex-direction: column;
+		gap: 0.5rem;
+		color: var(--gray-200);
+	}
+
+	.section-title {
+		grid-column-start: 1;
+		font-size: var(--text-xl);
+		color: var(--gray-0);
+	}
+
+	.content {
+		grid-column: 2 / 4;
+	}
+
+	.content :global(a) {
+		text-decoration: 1px solid underline transparent;
+		text-underline-offset: 0.25em;
+		transition: text-decoration-color var(--theme-transition);
+	}
+
+	.content :global(a:hover),
+	.content :global(a:focus) {
+		text-decoration-color: currentColor;
+	}
+
+	@media (min-width: 50em) {
+		.about {
+			display: grid;
+			grid-template-columns: 1fr 60% 1fr;
+		}
+
+		.about > :global(:first-child) {
+			grid-column-start: 2;
+		}
+
+		section {
+			display: contents;
+			font-size: var(--text-lg);
+		}
+	}
+</style>

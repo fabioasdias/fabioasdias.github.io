@@ -1,0 +1,25 @@
+---
+interface Props {
+	title: string;
+    date: string;
+}
+
+const { title, date } = Astro.props;
+---
+<h3>
+    <div class="split-line">
+        <span>{title}</span>
+        <span>{date}</span>
+    </div>
+</h3>
+<slot />
+<br>
+
+<style>
+.split-line {
+  display: flex;
+  justify-content: space-between; /* Distributes space between items */
+  align-items: center; /* Vertically centers items if they have different heights */
+}
+
+</style>
