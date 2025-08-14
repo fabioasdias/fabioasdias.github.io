@@ -2,6 +2,7 @@
 import ContactCTA from '../components/ContactCTA.astro';
 import Hero from '../components/Hero.astro';
 import BaseLayout from '../layouts/BaseLayout.astro';
+import DatedEntry from '../components/DatedEntry.astro';
 ---
 
 <BaseLayout title="About | Fabio Dias" description="About me">
@@ -9,7 +10,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 		<main class="wrapper about">
 			<Hero
 				title="About"
-				tagline="Thanks for stopping by. Read below to learn more about myself."
+				tagline="How did I get here?"
 			>
 				<img
 					width="800"
@@ -22,31 +23,40 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 			<section>
 				<h2 class="section-title">Background</h2>
 				<div class="content">
-					<p>
-						Ultrices tincidunt arcu non sodales neque sodales ut. Sed enim ut sem viverra aliquet
-						eget sit amet. Lacus luctus accumsan tortor posuere ac ut consequat semper viverra.
-						Viverra accumsan in nisl nisi scelerisque eu ultrices. In massa tempor nec feugiat nisl
-						pretium fusce.
-					</p>
+					<p>My defining trait is that I like to understand processes and solve problems.</p>
+					<br>
+					<p>I'm usually called to projects that are stalled, overdue, or the parties cannot converge into an approach. I uncover the actual problem, propose a solution, get the stakeholders into alignment, split the work, and help get it done.</p>
+					<br>		
+					<p>While there's some art in my previous works, I have zero artistical talent. I cannot create beauty. I do try to <a href="https://www.instagram.com/fabioasdias/" target="_blank">recognize it tho</a>.</p>
 				</div>
 			</section>
 			<section>
 				<h2 class="section-title">Education</h2>
 				<div class="content">
-					<h3>2009-2012 - Ph.D. in Computer Science</h3>
-					<p>Université Paris-Est (now Université Gustave Eiffel), Champs-sur-Marne, France.</p>
-					<a href="https://theses.hal.science/tel-00965583">A study of some morphological operators in simplicial complex spaces.</a></p>
-					<p>Advisors: <a href="https://perso.esiee.fr/~coustyj/">Jean Cousty</a> & <a href="https://www.laurentnajman.org/">Laurent Najman</a>.</p>
-					<br>
-					<h3>2007-2009 - M.Sc. in Computer Science</h3>
-					<p>Institute of Computing - Unicamp, Campinas, Brazil.</p>
-					<a href="https://repositorio.unicamp.br/acervo/detalhe/467516">Generalized visual rhythm and tracking in sport images.</a></p>
-					<p>Advisor: <a href="https://www.ic.unicamp.br/~neucimar/">Neucimar J. Leite</a>.</p>
-					<br>
-					<h3>2002-2006 - B.E. in Computer Engineering</h3>
-					<p>Unicamp, Campinas, Brazil.</p>
-					<a href="https://www.ic.unicamp.br/~reltech/2005/05-24.pdf">Information fusion and object tracking in video images.</a></p>
-					<p>Advisor: <a href="https://www.ic.unicamp.br/~neucimar/">Neucimar J. Leite</a>.</p>
+					<DatedEntry
+					   title="Ph.D. in Computer Science"
+					   date="2009-2012">
+						<p><a href="http://paris-est-sup.fr/ecoles-doctorales/ecole-doctorale-mathematiques-et-stic-mstic/accueil/" target ="_blank"> Université Paris-Est (now Université Gustave Eiffel)</a>, Champs-sur-Marne, France.</p>
+						<a href="https://theses.hal.science/tel-00965583" target="_blank">A study of some morphological operators in simplicial complex spaces.</a></p>
+						<p>Advisors: <a href="https://perso.esiee.fr/~coustyj/" target="_blank">Jean Cousty</a> & <a href="https://www.laurentnajman.org/" target="_blank">Laurent Najman</a>.</p>
+					</DatedEntry>
+
+					<DatedEntry
+						title="M.Sc. in Computer Science"
+						date="2007-2009">
+						<p><a href="https://ic.unicamp.br/pos-graduacao/mestrado-academico-em-ciencia-da-computacao/" target="_blank">Institute of Computing - Unicamp</a>, Campinas, Brazil.</p>
+						<a href="https://repositorio.unicamp.br/acervo/detalhe/467516" target="_blank">Generalized visual rhythm and tracking in sport images.</a></p>
+						<p>Advisor: <a href="https://www.ic.unicamp.br/~neucimar/" target="_blank">Neucimar J. Leite</a>.</p>
+					</DatedEntry>
+
+					<DatedEntry 
+						title="B.E. in Computer Engineering"
+						date="2002-2006">
+						<p><a href="https://www.fee.unicamp.br/graduacao/curso-de-engenharia-de-computacao/" target="_blank">Unicamp</a>, Campinas, Brazil.</p>
+						<a href="https://www.ic.unicamp.br/~reltech/2005/05-24.pdf" target="_blank">Information fusion and object tracking in video images.</a></p>
+						<p>Advisor: <a href="https://www.ic.unicamp.br/~neucimar/" target="_blank">Neucimar J. Leite</a>.</p>
+
+					</DatedEntry>
 
 
 				</div>
