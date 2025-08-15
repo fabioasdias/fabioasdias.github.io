@@ -19,4 +19,4 @@ That improvement allowed us to add more features to the system, including custom
 
 I was invited to present this approach in an [AWS Cloud Financial Management Peer Connect](https://pages.awscloud.com/aws-cfm-peer-connect-11102021.html) on Nov 10th, 2021.
 
-Work performed for State Street under guidance of [Nauman Noor](https://www.linkedin.com/in/naumannoor/). Illustrative diagram does not include any company-specific information or details.
+Work performed for a global financial instituition under guidance of [Nauman Noor](https://www.pcas.ai/). Illustrative diagram does not include any company-specific information or details.

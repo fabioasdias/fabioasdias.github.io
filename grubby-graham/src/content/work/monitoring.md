@@ -16,4 +16,4 @@ tags:
 This approach was documented in an [AWS blog post](https://aws.amazon.com/blogs/mt/multi-tenant-monitoring-across-accounts-and-regions-using-amazon-managed-for-prometheus/)
 
 
-Work performed for State Street under guidance of [Nauman Noor](https://www.linkedin.com/in/naumannoor/), in collaboration with [Dylan Alibay](https://www.linkedin.com/in/dylan-alibay/). Illustrative diagram does not include any company-specific information or details.
+Work performed for a global financial instituition under guidance of [Nauman Noor](https://www.pcas.ai/), in collaboration with [Dylan Alibay](https://www.linkedin.com/in/dylan-alibay/). Illustrative diagram does not include any company-specific information or details.
