@@ -1,9 +1,0 @@
-@font-face
-{
-    font-family: OpenDyslexic;
-    src: url('OpenDyslexic-Regular.ttf'),
-    url('OpenDyslexic-Regular.eot');
-}
-body {
-    font-family: 'OpenDyslexic';
-}
