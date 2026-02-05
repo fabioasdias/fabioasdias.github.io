@@ -15,6 +15,18 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 ---
 
 <meta charset="UTF-8" />
+<script is:inline type="application/ld+json" set:html={JSON.stringify({
+	"@context": "https://schema.org",
+	"@type": "Person",
+	"name": "Fabio Dias",
+	"url": "https://fabiodias.dev",
+	"jobTitle": "Cloud Architect",
+	"sameAs": [
+		"https://github.com/fabioasdias",
+		"https://www.linkedin.com/in/fabio-dias/",
+		"https://scholar.google.com/citations?hl=en&user=0D1ExLoAAAAJ"
+	]
+})} />
 <meta name="description" content={description} />
 <meta name="viewport" content="width=device-width" />
 <meta name="google-site-verification" content="ERlZJyJQqM9hs3De_jgZXMy_t0eGxnWQrXPEIgOqhqI" />
