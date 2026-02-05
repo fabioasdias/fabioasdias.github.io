@@ -10,13 +10,28 @@ const {
 	title = 'Fabio Dias',
 	description = 'The personal site of Fabio Dias',
 } = Astro.props;
+
+const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 ---
 
 <meta charset="UTF-8" />
-<meta name="description" property="og:description" content={description} />
+<meta name="description" content={description} />
 <meta name="viewport" content="width=device-width" />
 <meta name="google-site-verification" content="ERlZJyJQqM9hs3De_jgZXMy_t0eGxnWQrXPEIgOqhqI" />
 <meta name="generator" content={Astro.generator} />
+
+<link rel="canonical" href={canonicalURL} />
+
+<meta property="og:type" content="website" />
+<meta property="og:url" content={canonicalURL} />
+<meta property="og:title" content={title} />
+<meta property="og:description" content={description} />
+<meta property="og:image" content={new URL('/assets/portrait.jpg', Astro.site)} />
+
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:title" content={title} />
+<meta name="twitter:description" content={description} />
+<meta name="twitter:image" content={new URL('/assets/portrait.jpg', Astro.site)} />
 
 <title>{title}</title>
 
