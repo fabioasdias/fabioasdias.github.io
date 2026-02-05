@@ -1,0 +1,230 @@
+---
+import Hero from '../components/Hero.astro';
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout title="Photography | Fabio Dias" description="Photography by Fabio Dias">
+	<div class="stack gap-20">
+		<main class="wrapper photography">
+			<Hero
+				title="Photography"
+				tagline="Trying to recognize beauty."
+			/>
+
+			<section class="carousel-section">
+				<a href="https://www.instagram.com/fabioasdias/" target="_blank" class="carousel">
+					<div class="carousel-track">
+						<img src="/assets/photography/_MG_0589.jpg" alt="" />
+						<img src="/assets/photography/_MG_1191.jpg" alt="" />
+						<img src="/assets/photography/_MG_1718.jpg" alt="" />
+						<img src="/assets/photography/_MG_2993.jpg" alt="" />
+						<img src="/assets/photography/_MG_6496.jpg" alt="" />
+						<img src="/assets/photography/_IM_3768.jpg" alt="" />
+						<img src="/assets/photography/_IM_4259.jpg" alt="" />
+						<img src="/assets/photography/DJI_0687.jpg" alt="" />
+					</div>
+					<div class="carousel-dots">
+						<button class="dot active" data-index="0"></button>
+						<button class="dot" data-index="1"></button>
+						<button class="dot" data-index="2"></button>
+						<button class="dot" data-index="3"></button>
+						<button class="dot" data-index="4"></button>
+						<button class="dot" data-index="5"></button>
+						<button class="dot" data-index="6"></button>
+						<button class="dot" data-index="7"></button>
+					</div>
+				</a>
+			</section>
+
+			<section>
+				<h2 class="section-title">Portraits</h2>
+				<div class="content">
+					<p>I usually avoid taking pictures of people. But when I'm at an event or public place to photograph friends and family, I often end up capturing the people around them too, and I'm happy to share those photos.</p>
+					<br>
+					<p>I'm an amateur, so no guarantees on quality. And no money, ever — this is purely for fun.</p>
+				</div>
+			</section>
+
+			<section>
+				<h2 class="section-title">My Rules</h2>
+				<div class="content">
+					<ul>
+						<li>You can ask me not to take your picture.</li>
+						<li>I will never post or share photos without your explicit consent.</li>
+						<li>You can ask me to delete your photos at any time.</li>
+					</ul>
+				</div>
+			</section>
+
+			<section>
+				<h2 class="section-title">Get in Touch</h2>
+				<div class="content">
+					<p>If you're in one of my photos and want a copy, have questions, or want me to delete them, reach out at <a href="mailto:fabio@fabiodias.dev">fabio@fabiodias.dev</a>.</p>
+				</div>
+			</section>
+		</main>
+	</div>
+</BaseLayout>
+
+<style>
+	.photography {
+		display: flex;
+		flex-direction: column;
+		gap: 3.5rem;
+	}
+
+	img {
+		margin-top: 1.5rem;
+		border-radius: 1.5rem;
+		box-shadow: var(--shadow-md);
+	}
+
+	section {
+		display: flex;
+		flex-direction: column;
+		gap: 0.5rem;
+		color: var(--gray-200);
+	}
+
+	.section-title {
+		grid-column-start: 1;
+		font-size: var(--text-xl);
+		color: var(--gray-0);
+	}
+
+	.content {
+		grid-column: 2 / 4;
+	}
+
+	.content ul {
+		margin: 0;
+		padding-left: 1.5rem;
+	}
+
+	.content li {
+		margin-bottom: 0.5rem;
+	}
+
+	.content :global(a) {
+		text-decoration: 1px solid underline transparent;
+		text-underline-offset: 0.25em;
+		transition: text-decoration-color var(--theme-transition);
+	}
+
+	.content :global(a:hover),
+	.content :global(a:focus) {
+		text-decoration-color: currentColor;
+	}
+
+	.carousel-section {
+		width: 100%;
+	}
+
+	.carousel {
+		position: relative;
+		display: block;
+		width: 100%;
+		max-width: 550px;
+		margin: 0 auto;
+		overflow: hidden;
+		text-decoration: none;
+	}
+
+	.carousel-track {
+		display: flex;
+		flex-wrap: nowrap;
+		transition: transform 0.5s ease-in-out;
+	}
+
+	.carousel-track img {
+		flex: 0 0 100%;
+		min-width: 100%;
+		max-width: 100%;
+		height: auto;
+		margin-top: 0;
+		border-radius: 1.5rem;
+		box-shadow: var(--shadow-md);
+	}
+
+	.carousel-dots {
+		display: flex;
+		justify-content: center;
+		gap: 0.5rem;
+		margin-top: 1rem;
+	}
+
+	.dot {
+		width: 10px;
+		height: 10px;
+		border-radius: 50%;
+		border: none;
+		background: var(--gray-600);
+		cursor: pointer;
+		padding: 0;
+		transition: background-color 0.3s;
+	}
+
+	.dot.active {
+		background: var(--accent-regular);
+	}
+
+	.dot:hover {
+		background: var(--gray-400);
+	}
+
+	.dot.active:hover {
+		background: var(--accent-regular);
+	}
+
+	@media (min-width: 50em) {
+		.photography {
+			display: grid;
+			grid-template-columns: 1fr 60% 1fr;
+		}
+
+		.photography > :global(:first-child) {
+			grid-column-start: 2;
+		}
+
+		section {
+			display: contents;
+			font-size: var(--text-lg);
+		}
+
+		.carousel-section {
+			display: block;
+			grid-column: 1 / -1;
+		}
+	}
+</style>
+
+<script>
+	const track = document.querySelector('.carousel-track') as HTMLElement;
+	const dots = document.querySelectorAll('.dot');
+	const images = track?.querySelectorAll('img');
+	let currentIndex = 0;
+
+	function goToSlide(index: number) {
+		if (!track || !images) return;
+		currentIndex = index;
+		track.style.transform = `translateX(-${index * 100}%)`;
+		dots.forEach((dot, i) => {
+			dot.classList.toggle('active', i === index);
+		});
+	}
+
+	dots.forEach((dot) => {
+		dot.addEventListener('click', () => {
+			const index = parseInt(dot.getAttribute('data-index') || '0');
+			goToSlide(index);
+		});
+	});
+
+	// Auto-advance every 4 seconds
+	setInterval(() => {
+		if (images) {
+			currentIndex = (currentIndex + 1) % images.length;
+			goToSlide(currentIndex);
+		}
+	}, 4000);
+</script>
