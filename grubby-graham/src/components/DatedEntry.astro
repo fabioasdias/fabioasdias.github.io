@@ -18,8 +18,30 @@ const { title, date } = Astro.props;
 <style>
 .split-line {
   display: flex;
-  justify-content: space-between; /* Distributes space between items */
-  align-items: center; /* Vertically centers items if they have different heights */
+  flex-wrap: wrap;
+  gap: 0.25rem 1rem;
+  justify-content: space-between;
+  align-items: baseline;
 }
 
+.split-line span:first-child {
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+.split-line span:last-child {
+  flex-shrink: 0;
+  color: var(--gray-400);
+  font-size: var(--text-sm);
+}
+
+@media (min-width: 50em) {
+  .split-line {
+    flex-wrap: nowrap;
+  }
+
+  .split-line span:last-child {
+    font-size: inherit;
+  }
+}
 </style>

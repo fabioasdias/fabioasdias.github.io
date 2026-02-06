@@ -1,73 +1,63 @@
 ---
-import Icon from './Icon.astro';
-
 const currentYear = new Date().getFullYear();
 ---
 
 <footer>
-	<div class="group">
-		<p>
-			Designed & Developed with <a href="https://astro.build/">Astro</a>.
-			<Icon icon="rocket-launch" size="1.2em" />
-		</p>
+	<div class="footer-inner">
+		<p class="copyright">&copy; {currentYear} Fabio Dias</p>
+		<nav class="links">
+			<a href="https://github.com/fabioasdias" target="_blank" rel="noopener">GitHub</a>
+			<a href="https://www.linkedin.com/in/fabio-dias/" target="_blank" rel="noopener">LinkedIn</a>
+			<a href="https://scholar.google.com/citations?hl=en&user=0D1ExLoAAAAJ" target="_blank" rel="noopener">Scholar</a>
+		</nav>
 	</div>
-	<p class="socials">
-		<a href="https://www.linkedin.com/in/fabio-dias/"> Linkedin</a>
-		<a href="https://github.com/fabioasdias"> GitHub</a>
-	</p>
 </footer>
+
 <style>
 	footer {
+		border-top: 1px solid var(--gray-800);
+		padding: 2rem 1.5rem;
+	}
+
+	.footer-inner {
+		max-width: 72rem;
+		margin: 0 auto;
 		display: flex;
 		flex-direction: column;
-		gap: 3rem;
-		margin-top: auto;
-		padding: 3rem 2rem 3rem;
-		text-align: center;
-		color: var(--gray-400);
-		font-size: var(--text-sm);
-	}
-
-	footer a {
-		color: var(--gray-400);
-		text-decoration: 1px solid underline transparent;
-		text-underline-offset: 0.25em;
-		transition: text-decoration-color var(--theme-transition);
-	}
-
-	footer a:hover,
-	footer a:focus {
-		text-decoration-color: currentColor;
-	}
-
-	.group {
-		display: flex;
-		flex-direction: column;
-		gap: 0.5rem;
-	}
-
-	.socials {
-		display: flex;
-		justify-content: center;
 		gap: 1rem;
-		flex-wrap: wrap;
+		align-items: center;
+	}
+
+	.copyright {
+		font-size: var(--text-sm);
+		color: var(--gray-400);
+		margin: 0;
+	}
+
+	.links {
+		display: flex;
+		gap: 1.5rem;
+	}
+
+	.links a {
+		font-size: var(--text-sm);
+		color: var(--gray-400);
+		text-decoration: none;
+		transition: color 0.15s;
+	}
+
+	.links a:hover {
+		color: var(--gray-0);
 	}
 
 	@media (min-width: 50em) {
 		footer {
+			padding: 2rem;
+		}
+
+		.footer-inner {
 			flex-direction: row;
 			justify-content: space-between;
-			padding: 2.5rem 5rem;
-		}
-
-		.group {
-			flex-direction: row;
-			gap: 1rem;
-			flex-wrap: wrap;
-		}
-
-		.socials {
-			justify-content: flex-end;
 		}
 	}
 </style>
