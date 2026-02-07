@@ -1,0 +1,116 @@
+---
+interface Props {
+	id: string;
+	maxWidth?: string;
+	autoAdvanceMs?: number;
+	slideCount: number;
+}
+
+const { id, maxWidth = '600px', autoAdvanceMs = 5000, slideCount } = Astro.props;
+---
+
+<div class="carousel-container" style={`--carousel-max-width: ${maxWidth};`} data-carousel={id} data-interval={autoAdvanceMs}>
+	<div class="carousel-track" id={`${id}-track`}>
+		<slot />
+	</div>
+	<div class="carousel-nav">
+		{Array.from({ length: slideCount }).map((_, index) => (
+			<button
+				class={`nav-dot ${index === 0 ? 'active' : ''}`}
+				data-index={index}
+				aria-label={`Go to slide ${index + 1}`}
+			></button>
+		))}
+	</div>
+</div>
+
+<style>
+	.carousel-container {
+		position: relative;
+		display: block;
+		width: 100%;
+		max-width: var(--carousel-max-width, 600px);
+		margin: 0 auto;
+		overflow: hidden;
+	}
+
+	.carousel-track {
+		display: flex;
+		flex-wrap: nowrap;
+		transition: transform 0.5s ease-in-out;
+	}
+
+	.carousel-nav {
+		display: flex;
+		justify-content: center;
+		gap: 0.5rem;
+		margin-top: 1rem;
+	}
+
+	.nav-dot {
+		width: 10px;
+		height: 10px;
+		border-radius: 50%;
+		border: none;
+		background: var(--gray-600);
+		cursor: pointer;
+		padding: 0;
+		transition: background-color 0.3s;
+	}
+
+	.nav-dot.active {
+		background: var(--accent-regular);
+	}
+
+	.nav-dot:hover {
+		background: var(--gray-400);
+	}
+
+	.nav-dot.active:hover {
+		background: var(--accent-regular);
+	}
+
+	@media (min-width: 50em) {
+		.carousel-container {
+			max-width: var(--carousel-max-width-desktop, var(--carousel-max-width, 700px));
+		}
+	}
+</style>
+
+<script>
+	document.querySelectorAll('[data-carousel]').forEach((container) => {
+		const carouselId = container.getAttribute('data-carousel');
+		const interval = parseInt(container.getAttribute('data-interval') || '5000');
+		const track = container.querySelector('.carousel-track') as HTMLElement;
+		const dots = container.querySelectorAll('.nav-dot');
+		const slides = track?.children;
+		let currentIndex = 0;
+
+		function goToSlide(index: number) {
+			if (!track || !slides) return;
+			currentIndex = index;
+			track.style.transform = `translateX(-${index * 100}%)`;
+			dots.forEach((dot, i) => {
+				dot.classList.toggle('active', i === index);
+			});
+		}
+
+		dots.forEach((dot) => {
+			dot.addEventListener('click', (e) => {
+				e.preventDefault();
+				const index = parseInt(dot.getAttribute('data-index') || '0');
+				goToSlide(index);
+			});
+		});
+
+		// Auto-advance
+		if (interval > 0) {
+			setInterval(() => {
+				if (slides && slides.length > 0) {
+					currentIndex = (currentIndex + 1) % slides.length;
+					goToSlide(currentIndex);
+				}
+			}, interval);
+		}
+	});
+</script>

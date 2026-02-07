@@ -11,9 +11,9 @@ const textLinks: { label: string; href: string }[] = [
 	{ label: 'About', href: '/about/' },
 ];
 
-/** Icon links to social media — edit these with links to your profiles! */
+/** Icon links to social media */
 const iconLinks: { label: string; href: string; icon: keyof typeof iconPaths }[] = [
-	{ label: 'GitHub', href: 'https://github.com/me', icon: 'github-logo' },
+	{ label: 'GitHub', href: 'https://github.com/fabioasdias', icon: 'github-logo' },
 	{ label: 'LinkedIn', href: 'https://www.linkedin.com/in/fabio-dias/', icon: 'linkedin-logo'},
 	{ label: 'Google Scholar', href: 'https://scholar.google.com/citations?hl=en&user=0D1ExLoAAAAJ', icon: 'graduation-cap'}
 ];
@@ -28,72 +28,41 @@ const isCurrentPage = (href: string) => {
 ---
 
 <nav>
-	<div class="menu-header">
-		<a href="/" class="site-title">
-			<Icon icon="terminal-window" color="var(--accent-regular)" size="1.6em" gradient />
-			Fabio Dias
-		</a>
+	<div class="nav-inner">
+		<a href="/" class="site-title">Fabio Dias</a>
+
 		<menu-button>
 			<template>
-				<button class="menu-button" aria-expanded="false">
-					<span class="sr-only">Menu</span>
+				<button class="menu-button" aria-expanded="false" aria-label="Menu">
 					<Icon icon="list" />
 				</button>
 			</template>
 		</menu-button>
-	</div>
-	<noscript>
-		<ul class="nav-items">
-			{
-				textLinks.map(({ label, href }) => (
-					<li>
-						<a aria-current={isCurrentPage(href) ? 'page' : null} class="link" href={href}>
-							{label}
-						</a>
-					</li>
-				))
-			}
-		</ul>
-	</noscript>
-	<noscript>
-		<div class="menu-footer">
-			<div class="socials">
-				{
-					iconLinks.map(({ href, icon, label }) => (
-						<a href={href} class="social">
-							<span class="sr-only">{label}</span>
-							<Icon icon={icon} />
-						</a>
-					))
-				}
-			</div>
-		</div>
-	</noscript>
-	<div id="menu-content" hidden>
-		<ul class="nav-items">
-			{
-				textLinks.map(({ label, href }) => (
-					<li>
-						<a aria-current={isCurrentPage(href) ? 'page' : null} class="link" href={href}>
-							{label}
-						</a>
-					</li>
-				))
-			}
-		</ul>
-		<div class="menu-footer">
-			<div class="socials">
-				{
-					iconLinks.map(({ href, icon, label }) => (
-						<a href={href} class="social">
-							<span class="sr-only">{label}</span>
-							<Icon icon={icon} />
-						</a>
-					))
-				}
-			</div>
 
-			<div class="theme-toggle">
+		<div id="menu-content" hidden>
+			<ul class="nav-items">
+				{
+					textLinks.map(({ label, href }) => (
+						<li>
+							<a aria-current={isCurrentPage(href) ? 'page' : null} class="link" href={href}>
+								{label}
+							</a>
+						</li>
+					))
+				}
+			</ul>
+
+			<div class="nav-right">
+				<div class="socials">
+					{
+						iconLinks.map(({ href, icon, label }) => (
+							<a href={href} class="social" target="_blank" rel="noopener" title={label}>
+								<span class="sr-only">{label}</span>
+								<Icon icon={icon} />
+							</a>
+						))
+					}
+				</div>
 				<ThemeToggle />
 			</div>
 		</div>
@@ -104,27 +73,19 @@ const isCurrentPage = (href: string) => {
 	class MenuButton extends HTMLElement {
 		constructor() {
 			super();
-
-			// Inject menu toggle button when JS runs.
 			this.appendChild(this.querySelector('template')!.content.cloneNode(true));
 			const btn = this.querySelector('button')!;
-
-			// Hide menu (shown by default to support no-JS browsers).
 			const menu = document.getElementById('menu-content')!;
 			menu.hidden = true;
-			// Add "menu-content" class in JS to avoid covering content in non-JS browsers.
 			menu.classList.add('menu-content');
 
-			/** Set whether the menu is currently expanded or collapsed. */
 			const setExpanded = (expand: boolean) => {
 				btn.setAttribute('aria-expanded', expand ? 'true' : 'false');
 				menu.hidden = !expand;
 			};
 
-			// Toggle menu visibility when the menu button is clicked.
 			btn.addEventListener('click', () => setExpanded(menu.hidden));
 
-			// Hide menu button for large screens.
 			const handleViewports = (e: MediaQueryList | MediaQueryListEvent) => {
 				setExpanded(e.matches);
 				btn.hidden = e.matches;
@@ -139,214 +100,177 @@ const isCurrentPage = (href: string) => {
 
 <style>
 	nav {
-		z-index: 9999;
 		position: relative;
-		font-family: var(--font-brand);
-		font-weight: 500;
-		margin-bottom: 3.5rem;
+		z-index: 9999;
+		border-bottom: 1px solid var(--gray-800);
 	}
 
-	.menu-header {
+	.nav-inner {
 		display: flex;
 		justify-content: space-between;
-		gap: 0.5rem;
-		padding: 1.5rem;
+		align-items: center;
+		padding: 1rem 1.5rem;
+		max-width: 72rem;
+		margin: 0 auto;
 	}
 
 	.site-title {
-		display: flex;
-		gap: 0.5rem;
-		align-items: center;
-		line-height: 1.1;
+		font-family: var(--font-brand);
+		font-size: var(--text-lg);
+		font-weight: 600;
 		color: var(--gray-0);
 		text-decoration: none;
+		letter-spacing: -0.02em;
 	}
 
 	.menu-button {
-		position: relative;
 		display: flex;
-		border: 0;
-		border-radius: 999rem;
+		align-items: center;
+		justify-content: center;
 		padding: 0.5rem;
-		font-size: 1.5rem;
+		border: 1px solid var(--gray-800);
+		border-radius: 0.375rem;
+		background: transparent;
 		color: var(--gray-300);
-		background: radial-gradient(var(--gray-900), var(--gray-800) 150%);
-		box-shadow: var(--shadow-md);
+		cursor: pointer;
+		font-size: 1.25rem;
 	}
 
-	.menu-button[aria-expanded='true'] {
+	.menu-button:hover {
 		color: var(--gray-0);
-		background:
-			linear-gradient(180deg, var(--gray-600), transparent),
-			radial-gradient(var(--gray-900), var(--gray-800) 150%);
+		border-color: var(--gray-600);
 	}
 
 	.menu-button[hidden] {
 		display: none;
 	}
 
-	.menu-button::before {
-		position: absolute;
-		inset: -1px;
-		content: '';
-		background: var(--gradient-stroke);
-		border-radius: 999rem;
-		z-index: -1;
-	}
-
 	.menu-content {
 		position: absolute;
+		top: 100%;
 		left: 0;
 		right: 0;
+		background: var(--gray-999);
+		border-bottom: 1px solid var(--gray-800);
+		padding: 1rem 1.5rem;
 	}
 
 	.nav-items {
-		margin: 0;
 		display: flex;
 		flex-direction: column;
-		gap: 1rem;
-		font-size: var(--text-md);
-		line-height: 1.2;
+		gap: 0.75rem;
 		list-style: none;
-		padding: 2rem;
-		background-color: var(--gray-999);
-		border-bottom: 1px solid var(--gray-800);
+		margin: 0 0 1rem 0;
+		padding: 0;
 	}
 
 	.link {
-		display: inline-block;
+		display: block;
+		padding: 0.5rem 0;
 		color: var(--gray-300);
 		text-decoration: none;
+		font-size: var(--text-base);
+		transition: color 0.15s;
 	}
 
-	.link[aria-current] {
+	.link:hover {
 		color: var(--gray-0);
 	}
 
-	.menu-footer {
-		--icon-size: var(--text-xl);
-		--icon-padding: 0.5rem;
+	.link[aria-current='page'] {
+		color: var(--accent-regular);
+	}
 
+	.nav-right {
 		display: flex;
-		justify-content: space-between;
-		gap: 0.75rem;
-		padding: 1.5rem 2rem 1.5rem 1.5rem;
-		background-color: var(--gray-999);
-		border-radius: 0 0 0.75rem 0.75rem;
-		box-shadow: var(--shadow-lg);
+		align-items: center;
+		gap: 1rem;
+		padding-top: 1rem;
+		border-top: 1px solid var(--gray-800);
 	}
 
 	.socials {
 		display: flex;
-		flex-wrap: wrap;
-		gap: 0.625rem;
-		font-size: var(--icon-size);
+		gap: 0.5rem;
 	}
 
 	.social {
 		display: flex;
-		padding: var(--icon-padding);
-		text-decoration: none;
-		color: var(--accent-dark);
-		transition: color var(--theme-transition);
-	}
-
-	.social:hover,
-	.social:focus {
-		color: var(--accent-text-over);
-	}
-
-	.theme-toggle {
-		display: flex;
 		align-items: center;
-		height: calc(var(--icon-size) + 2 * var(--icon-padding));
+		justify-content: center;
+		width: 2rem;
+		height: 2rem;
+		color: var(--gray-400);
+		text-decoration: none;
+		transition: color 0.15s;
+	}
+
+	.social:hover {
+		color: var(--accent-regular);
 	}
 
 	@media (min-width: 50em) {
 		nav {
-			display: grid;
-			grid-template-columns: 1fr auto 1fr;
-			align-items: center;
-			padding: 2.5rem 5rem;
-			gap: 1rem;
+			border-bottom: none;
 		}
 
-		.menu-header {
-			padding: 0;
-		}
-
-		.site-title {
-			font-size: var(--text-lg);
+		.nav-inner {
+			padding: 1.5rem 2rem;
 		}
 
 		.menu-content {
-			display: contents;
+			position: static;
+			display: flex;
+			align-items: center;
+			gap: 2rem;
+			background: transparent;
+			border: none;
+			padding: 0;
 		}
 
 		.nav-items {
-			position: relative;
 			flex-direction: row;
-			font-size: var(--text-sm);
-			border-radius: 999rem;
-			border: 0;
-			padding: 0.5rem 0.5625rem;
-			background: radial-gradient(var(--gray-900), var(--gray-800) 150%);
-			box-shadow: var(--shadow-md);
-		}
-
-		.nav-items::before {
-			position: absolute;
-			inset: -1px;
-			content: '';
-			background: var(--gradient-stroke);
-			border-radius: 999rem;
-			z-index: -1;
+			gap: 0.25rem;
+			margin: 0;
 		}
 
 		.link {
-			padding: 0.5rem 1rem;
-			border-radius: 999rem;
-			transition:
-				color var(--theme-transition),
-				background-color var(--theme-transition);
+			padding: 0.5rem 0.75rem;
+			font-size: var(--text-sm);
+			border-radius: 0.25rem;
 		}
 
-		.link:hover,
-		.link:focus {
-			color: var(--gray-100);
-			background-color: var(--accent-subtle-overlay);
+		.link:hover {
+			background: var(--gray-800);
 		}
 
 		.link[aria-current='page'] {
-			color: var(--accent-text-over);
-			background-color: var(--accent-regular);
+			color: var(--gray-0);
+			background: var(--gray-800);
 		}
 
-		.menu-footer {
-			--icon-padding: 0.375rem;
+		.link[aria-current='page']::after {
+			content: '';
+			position: absolute;
+			bottom: -2px;
+			left: 0.75rem;
+			right: 0.75rem;
+			height: 2px;
+			background: var(--accent-regular);
+		}
 
-			justify-self: flex-end;
-			align-items: center;
+		.link {
+			position: relative;
+		}
+
+		.nav-right {
 			padding: 0;
-			background-color: transparent;
-			box-shadow: none;
+			border: none;
 		}
 
-		.socials {
-			display: none;
-		}
-	}
-
-	@media (min-width: 60em) {
-		.socials {
-			display: flex;
-			justify-content: flex-end;
-			gap: 0;
-		}
-	}
-	@media (forced-colors: active) {
-		.link[aria-current='page'] {
-			color: SelectedItem;
+		.social {
+			width: 2.25rem;
+			height: 2.25rem;
 		}
 	}
 </style>

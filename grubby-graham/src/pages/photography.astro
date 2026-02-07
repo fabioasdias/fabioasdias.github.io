@@ -1,6 +1,18 @@
 ---
+import Carousel from '../components/Carousel.astro';
 import Hero from '../components/Hero.astro';
 import BaseLayout from '../layouts/BaseLayout.astro';
+
+const photos = [
+	{ src: '/assets/photography/_MG_0589.jpg', alt: 'Red cardinal perched on a branch in winter' },
+	{ src: '/assets/photography/_MG_1191.jpg', alt: 'Fireworks over a city skyline at night' },
+	{ src: '/assets/photography/_MG_1718.jpg', alt: 'Close-up of a peacock\'s head' },
+	{ src: '/assets/photography/_MG_2993.jpg', alt: 'Aerobatic jets performing with colored smoke trails' },
+	{ src: '/assets/photography/_MG_6496.jpg', alt: 'Spotted flower with purple and yellow petals' },
+	{ src: '/assets/photography/_IM_3768.jpg', alt: 'Eiffel Tower viewed from below in black and white' },
+	{ src: '/assets/photography/_IM_4259.jpg', alt: 'Castle spires at sunset with the moon' },
+	{ src: '/assets/photography/DJI_0687.jpg', alt: 'Aerial view of a river and bridge over green landscape' },
+];
 ---
 
 <BaseLayout title="Photography | Fabio Dias" description="Photography by Fabio Dias — portrait rules, privacy guidelines, and public work on Instagram.">
@@ -12,28 +24,13 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 			/>
 
 			<section class="carousel-section">
-				<a href="https://www.instagram.com/fabioasdias/" target="_blank" rel="noopener" class="carousel">
-					<div class="carousel-track">
-						<img src="/assets/photography/_MG_0589.jpg" alt="Red cardinal perched on a branch in winter" />
-						<img src="/assets/photography/_MG_1191.jpg" alt="Fireworks over a city skyline at night" />
-						<img src="/assets/photography/_MG_1718.jpg" alt="Close-up of a peacock's head" />
-						<img src="/assets/photography/_MG_2993.jpg" alt="Aerobatic jets performing with colored smoke trails" />
-						<img src="/assets/photography/_MG_6496.jpg" alt="Spotted flower with purple and yellow petals" />
-						<img src="/assets/photography/_IM_3768.jpg" alt="Eiffel Tower viewed from below in black and white" />
-						<img src="/assets/photography/_IM_4259.jpg" alt="Castle spires at sunset with the moon" />
-						<img src="/assets/photography/DJI_0687.jpg" alt="Aerial view of a river and bridge over green landscape" />
-					</div>
-					<div class="carousel-dots">
-						<button class="dot active" data-index="0"></button>
-						<button class="dot" data-index="1"></button>
-						<button class="dot" data-index="2"></button>
-						<button class="dot" data-index="3"></button>
-						<button class="dot" data-index="4"></button>
-						<button class="dot" data-index="5"></button>
-						<button class="dot" data-index="6"></button>
-						<button class="dot" data-index="7"></button>
-					</div>
-				</a>
+				<Carousel id="photography" maxWidth="550px" autoAdvanceMs={4000} slideCount={photos.length}>
+					{photos.map((photo) => (
+						<a class="slide" href="https://www.instagram.com/fabioasdias/" target="_blank" rel="noopener">
+							<img src={photo.src} alt={photo.alt} />
+						</a>
+					))}
+				</Carousel>
 			</section>
 
 			<section>
@@ -120,60 +117,20 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 		width: 100%;
 	}
 
-	.carousel {
-		position: relative;
-		display: block;
-		width: 100%;
-		max-width: 550px;
-		margin: 0 auto;
-		overflow: hidden;
-		text-decoration: none;
-	}
-
-	.carousel-track {
-		display: flex;
-		flex-wrap: nowrap;
-		transition: transform 0.5s ease-in-out;
-	}
-
-	.carousel-track img {
+	.slide {
 		flex: 0 0 100%;
 		min-width: 100%;
 		max-width: 100%;
+		display: block;
+		text-decoration: none;
+	}
+
+	.slide img {
+		width: 100%;
 		height: auto;
 		margin-top: 0;
 		border-radius: 1.5rem;
 		box-shadow: var(--shadow-md);
-	}
-
-	.carousel-dots {
-		display: flex;
-		justify-content: center;
-		gap: 0.5rem;
-		margin-top: 1rem;
-	}
-
-	.dot {
-		width: 10px;
-		height: 10px;
-		border-radius: 50%;
-		border: none;
-		background: var(--gray-600);
-		cursor: pointer;
-		padding: 0;
-		transition: background-color 0.3s;
-	}
-
-	.dot.active {
-		background: var(--accent-regular);
-	}
-
-	.dot:hover {
-		background: var(--gray-400);
-	}
-
-	.dot.active:hover {
-		background: var(--accent-regular);
 	}
 
 	@media (min-width: 50em) {
@@ -198,33 +155,3 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 	}
 </style>
 
-<script>
-	const track = document.querySelector('.carousel-track') as HTMLElement;
-	const dots = document.querySelectorAll('.dot');
-	const images = track?.querySelectorAll('img');
-	let currentIndex = 0;
-
-	function goToSlide(index: number) {
-		if (!track || !images) return;
-		currentIndex = index;
-		track.style.transform = `translateX(-${index * 100}%)`;
-		dots.forEach((dot, i) => {
-			dot.classList.toggle('active', i === index);
-		});
-	}
-
-	dots.forEach((dot) => {
-		dot.addEventListener('click', () => {
-			const index = parseInt(dot.getAttribute('data-index') || '0');
-			goToSlide(index);
-		});
-	});
-
-	// Auto-advance every 4 seconds
-	setInterval(() => {
-		if (images) {
-			currentIndex = (currentIndex + 1) % images.length;
-			goToSlide(currentIndex);
-		}
-	}, 4000);
-</script>
