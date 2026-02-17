@@ -11,7 +11,12 @@ const {
 	description = 'The personal site of Fabio Dias',
 } = Astro.props;
 
-const canonicalURL = new URL(Astro.url.pathname, Astro.site);
+// Normalize canonical URL: always HTTPS, no www, with trailing slash
+let pathname = Astro.url.pathname;
+if (!pathname.endsWith('/') && !pathname.includes('.')) {
+	pathname = pathname + '/';
+}
+const canonicalURL = new URL(pathname, Astro.site);
 ---
 
 <meta charset="UTF-8" />
