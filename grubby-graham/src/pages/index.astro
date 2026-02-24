@@ -39,7 +39,7 @@ const projects = (await getCollection('work'))
 				</header>
 				<Carousel id="projects" maxWidth="600px" autoAdvanceMs={5000} slideCount={projects.length}>
 					{projects.map((project) => (
-						<a class="slide" href={`/work/${project.id}`}>
+						<a class="slide" href={`/work/${project.id}/`}>
 							<img src={project.data.img} alt={project.data.img_alt || ''} loading="lazy" decoding="async" />
 							<div class="slide-overlay">
 								<h3>{project.data.title}</h3>

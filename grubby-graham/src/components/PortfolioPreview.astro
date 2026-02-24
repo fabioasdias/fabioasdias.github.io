@@ -8,7 +8,7 @@ interface Props {
 const { data, id } = Astro.props.project;
 ---
 
-<a class="card" href={`/work/${id}`}>
+<a class="card" href={`/work/${id}/`}>
 	<div class="thumb">
 		<img src={data.img} alt={data.img_alt || ''} loading="lazy" decoding="async" />
 		<div class="thumb-overlay"></div>
