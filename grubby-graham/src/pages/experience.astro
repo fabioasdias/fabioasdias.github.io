@@ -5,7 +5,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import DatedEntry from '../components/DatedEntry.astro';	
 ---
 
-<BaseLayout title="Experience | Fabio Dias" description="Employment history of Fabio Dias — from research scientist to senior DevSecOps engineer at State Street.">
+<BaseLayout title="Experience | Fabio Dias" description="Employment history of Fabio Dias — from research scientist to platform and security lead at State Street, and senior software engineer at Okta.">
 	<div class="stack gap-20">
 		<main class="wrapper about">
 			<Hero
@@ -20,14 +20,24 @@ import DatedEntry from '../components/DatedEntry.astro';
 					<p>After I finished my Ph.D, I worked in research for the next few years, applying discrete mathematics for data analysis and Visual Analytics.</p>
 					<p>I leveraged my experience leading teams into a Lead Developer role at State Street in 2019.</p>
 					<p>In 2024 I was promoted to the Application and Cloud Security team, overseeing the entire enterprise.</p>
+					<p>After State Street I consulted as a cloud architect at PCAS, and in 2026 I joined Okta as a senior software engineer.</p>
 				</div>
 			</section>
 			<section>
 				<h2 class="section-title">Roles</h2>
 				<div class="content">
 					<DatedEntry
-						title="Cloud Architect"
-						date="09/2025 - Present"
+						title="Senior Software Engineer"
+						date="01/2026 - Present"
+					>
+						<p>I support Okta's internal CI platform: on-call rotation, first-line support, and fixes. I also maintain the internal tooling around it.</p>
+						<p>I established SDLC guidelines and a change plan for the team, and enabled central telemetry from the CI runners.</p>
+						<p><a href="https://www.okta.com/" target="_blank" rel="noopener">Okta</a>, Toronto, Canada.</p>
+					</DatedEntry>
+
+					<DatedEntry
+						title="Cloud Architect (Contract)"
+						date="09/2025 - 12/2025"
 					>
 					    <p>Provided guidance, stakeholder convergence,  and technical intervention in an Azure migration for a global client.</p>
                         <p>Developed automated tools and interactive dashboards for cloud environment analysis and reporting</p>
@@ -35,19 +45,19 @@ import DatedEntry from '../components/DatedEntry.astro';
 					</DatedEntry>
 
 					<DatedEntry
-						title="Senior DevSecOps Engineer - Application Security Lead"
-						date="05/2024 - 08/2025"
+						title="Senior Application Security Lead"
+						date="08/2024 - 08/2025"
 					>
-					    <p>Lead engineer for Application Security tooling. I own the engineering and maintenance of the security-oriented SDLC tollgates systems supporting the 10+ IT environments (OnPrem, Azure, AWS, OCI) across the enterprise. I lead the container and IaC aspects of our tooling convergence of all departments globally, and occasionally assist in cloud security.</p>
+					    <p>Lead engineer for Application Security tooling. I owned the engineering and maintenance of the security-oriented SDLC tollgates systems supporting the 10+ IT environments (OnPrem, Azure, AWS, OCI) across the enterprise. I led the container and IaC aspects of our tooling convergence of all departments globally, and got about ten CI owners across the subsidiaries to run container and IaC scanning in their pipelines. I also designed the tollgate process around those scans (blocker thresholds, exceptions, and incident escalation), used by every development team in the bank, and occasionally assisted in cloud security.</p>
 						<p><a href="https://www.statestreet.com/" target="_blank" rel="noopener">State Street</a>, Toronto, Canada.</p>
 					</DatedEntry>
 
 					<DatedEntry
 						title="Lead Cloud Developer - Platform Lead"
-						date="09/2019 - 04/2024"
+						date="09/2019 - 07/2024"
 					>
-					    <p>I interviewed, hired, trained, and managed a team of ~10 people that owned the automated common tools for a landing zone in AWS. Including service enablement, templates, permission scoping, billing, logging, monitoring, backup, compliance, and audit tooling.</p>
-						<p>The environment supported mission critical services across 13 regions.</p>
+					    <p>I interviewed, hired, trained, and managed a team of 10–12 people that owned the automated common tools for a landing zone in AWS. Including service enablement, templates, permission scoping, billing, logging, monitoring, backup, compliance, and audit tooling.</p>
+						<p>The environment supported mission critical services: 600 applications across 13 regions.</p>
 						<p><a href="https://www.statestreet.com/" target="_blank" rel="noopener">State Street</a>, Toronto, Canada.</p>
 					</DatedEntry>
 
