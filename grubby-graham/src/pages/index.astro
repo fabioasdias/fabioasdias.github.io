@@ -9,7 +9,10 @@ const projects = (await getCollection('work'))
 	.sort((a, b) => b.data.publishDate.valueOf() - a.data.publishDate.valueOf());
 ---
 
-<BaseLayout>
+<BaseLayout
+	title="Fabio Dias | Senior Software Engineer, Cloud & Distributed Systems"
+	description="Fabio Dias is a senior software engineer working on cloud and distributed systems."
+>
 	<div class="stack gap-20">
 		<main class="wrapper home">
 			<section class="intro">
