@@ -17,21 +17,45 @@ if (!pathname.endsWith('/') && !pathname.includes('.')) {
 	pathname = pathname + '/';
 }
 const canonicalURL = new URL(pathname, Astro.site);
----
 
-<meta charset="UTF-8" />
-<script is:inline type="application/ld+json" set:html={JSON.stringify({
+const personSchema = {
 	"@context": "https://schema.org",
 	"@type": "Person",
+	"@id": "https://fabiodias.dev",
 	"name": "Fabio Dias",
+	"alternateName": [
+		"Fabio Augusto Salve Dias",
+		"Fábio Augusto Salve Dias"
+	],
 	"url": "https://fabiodias.dev",
-	"jobTitle": "Cloud Architect",
+	"jobTitle": "Senior Software Engineer",
+	"worksFor": { "@type": "Organization", "name": "Okta" },
+	"alumniOf": [
+		{ "@type": "CollegeOrUniversity", "name": "Université Paris-Est" },
+		{ "@type": "CollegeOrUniversity", "name": "State University of Campinas (UNICAMP)" },
+		{ "@type": "CollegeOrUniversity", "name": "University of Toronto" },
+		{ "@type": "Organization", "name": "PCAS" },
+		{ "@type": "Organization", "name": "State Street" }
+	],
+	"knowsAbout": [
+		"Cloud Architecture",
+		"Distributed Systems",
+		"DevSecOps",
+		"Platform Engineering",
+		"Observability",
+		"Computer Vision",
+		"Mathematical Morphology"
+	],
 	"sameAs": [
 		"https://github.com/fabioasdias",
 		"https://www.linkedin.com/in/fabio-dias/",
 		"https://scholar.google.com/citations?hl=en&user=0D1ExLoAAAAJ"
 	]
-})} />
+};
+---
+
+<meta charset="UTF-8" />
+<script is:inline type="application/ld+json" set:html={JSON.stringify(personSchema)} />
 <meta name="description" content={description} />
 <meta name="viewport" content="width=device-width" />
 <meta name="google-site-verification" content="ERlZJyJQqM9hs3De_jgZXMy_t0eGxnWQrXPEIgOqhqI" />
